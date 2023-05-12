@@ -19,6 +19,8 @@ RUN bash webui.sh --skip-torch-cuda-test --exit && \
 
 WORKDIR /workspace/stable-diffusion-webui
 
+RUN wget -O /workspace/stable-diffusion-webui/models/ https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.safetensors
+
 EXPOSE 7860
 
 CMD ["bash", "-c", "source venv/bin/activate && ./webui.sh", "--listen ","--disable-safe-unpickle"]
