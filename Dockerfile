@@ -1,8 +1,5 @@
 FROM nvidia/cuda:11.7.0-cudnn8-devel-ubuntu22.04
 
-# 换清华大学源
-RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
-
 RUN apt-get update && \
     apt-get install git vim iproute2 net-tools wget curl libgl1 libglib2.0-0 python3-venv -y && \
     apt-get clean && \
