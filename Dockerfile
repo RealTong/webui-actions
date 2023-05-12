@@ -19,7 +19,7 @@ RUN bash webui.sh --skip-torch-cuda-test --exit && \
 
 WORKDIR /workspace/stable-diffusion-webui
 
-RUN wget -O /workspace/stable-diffusion-webui/models/ https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.safetensors
+RUN wget -O /workspace/stable-diffusion-webui/models/v1-5-pruned-emaonly.safetensors https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.safetensors
 
 EXPOSE 7860
 
