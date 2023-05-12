@@ -5,6 +5,10 @@ on:
       tag:
         description: 'Tag'
         required: true
+      push:
+        description: 'Push to Huawei'
+        required: true
+        
 
 jobs:
   build:
@@ -12,12 +16,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3
+        
+      - name: Login to image repository
+        uses: docker/login-action@v2
+        with:
+          registry: swr.cn-east-3.myhuaweicloud.com
+          username: ${{ secrets.REG_USERNAME }}
+          password: ${{ secrets.REG_PASSWORD }}
+          
       - name: Build and push Docker image
         uses: docker/build-push-action@v2 # docker build & push
         with:
           context: .
-          push: false
-          tags: beta
-          labels: webui-docker
+          push: ${{ github.event.inputs.push }}
+          tags: ${{ github.event.inputs.tag }}
+          labels: cloud-webui
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
