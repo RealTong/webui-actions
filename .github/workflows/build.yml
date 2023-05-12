@@ -14,5 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -t webui-docker .
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2 # docker build & push
+        with:
+          context: .
+          push: false
+          tags: beta
+          labels: webui-docker
